@@ -1,19 +1,37 @@
 using System;
 using GhostSpace;
 using PacmanSpace;
+using TMPro;
 using UnityEngine;
 
 namespace GameManagerSpace
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameManager Instance { get; private set; }
         public Ghost[] Ghosts;
         public Pacman Pacman;
         public GameObject[] Pellets;
         public float DelayTime = 2f;
         
+        [SerializeField] private TextMeshProUGUI _scoreText;
+        [SerializeField] private TextMeshProUGUI _livesText;
+        [SerializeField] private TextMeshProUGUI _gameOverText;
+        
         public int Score { get; private set; }
         public int Lives { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                DestroyImmediate(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
 
         private void Start()
         {
@@ -28,6 +46,14 @@ namespace GameManagerSpace
             }
         }
 
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
+        }
+
         private void NewGame()
         {
             SetScore(0);
@@ -38,7 +64,7 @@ namespace GameManagerSpace
         
         public void PacmanEaten()
         {
-            Pacman.gameObject.SetActive(false);
+            Pacman.DeathSequence();
             SetLives(Lives - 1);
 
             if (Lives > 0)
@@ -58,6 +84,8 @@ namespace GameManagerSpace
 
         private void GameOver()
         {
+            _gameOverText.enabled = true;
+            
             foreach (var ghost in Ghosts)
             {
                 ghost.gameObject.SetActive(false);

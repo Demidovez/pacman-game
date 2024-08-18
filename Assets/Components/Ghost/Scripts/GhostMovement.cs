@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
-namespace PacmanSpace
+namespace GhostSpace
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Movement : MonoBehaviour
+    public class GhostMovement : MonoBehaviour
     {
         public float Speed;
         public float GhostSpeed;
@@ -35,7 +34,7 @@ namespace PacmanSpace
             RigidBody.MovePosition(position + translation);
         }
 
-        private void ResetStart()
+        public void ResetStart()
         {
             GhostSpeed = 1;
             Direction = InitDirection;
