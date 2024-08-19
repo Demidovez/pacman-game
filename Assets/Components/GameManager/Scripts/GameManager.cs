@@ -1,6 +1,6 @@
-using System;
 using GhostSpace;
 using PacmanSpace;
+using PelletSpace;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ namespace GameManagerSpace
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+        
         public Ghost[] Ghosts;
         public Pacman Pacman;
         public GameObject[] Pellets;
@@ -17,6 +18,8 @@ namespace GameManagerSpace
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private TextMeshProUGUI _livesText;
         [SerializeField] private TextMeshProUGUI _gameOverText;
+
+        private int _ghostMultiplayer = 1;
         
         public int Score { get; private set; }
         public int Lives { get; private set; }
@@ -82,6 +85,49 @@ namespace GameManagerSpace
             SetScore(Score + ghost.ScorePoint);
         }
 
+        public void PelletEaten(Pellet pellet)
+        {
+            pellet.gameObject.SetActive(false);
+            
+            SetScore(Score + pellet.Points);
+
+            if (!HasRemainingPellets())
+            {
+                Pacman.gameObject.SetActive(false);
+                Invoke(nameof(NewRound), 3f);
+            }
+        }
+        
+        public void PowerPelletEaten(PowerPellet pellet)
+        {
+            foreach (var ghost in Ghosts)
+            {
+                ghost.Frightened.Enable(pellet.Duration);
+            }
+            
+            PelletEaten(pellet);
+            CancelInvoke(nameof(ResetGhost));
+            Invoke(nameof(ResetGhost), pellet.Duration);
+        }
+
+        private void ResetGhost()
+        {
+            _ghostMultiplayer = 1;
+        }
+
+        private bool HasRemainingPellets()
+        {
+            foreach (var pellet in Pellets)
+            {
+                if (pellet.activeSelf)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void GameOver()
         {
             _gameOverText.enabled = true;
@@ -106,6 +152,8 @@ namespace GameManagerSpace
 
         private void NewRound()
         {
+            _gameOverText.enabled = false;
+            
             foreach (var pellet in Pellets)
             {
                 pellet.SetActive(true);

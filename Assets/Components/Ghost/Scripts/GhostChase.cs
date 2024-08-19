@@ -30,6 +30,11 @@ namespace GhostSpace
                 Ghost.Movement.SetDirection(direction);
             }
         }
+
+        private void OnDisable()
+        {
+            Ghost.Scatter.Enable();
+        }
     }
 }
 

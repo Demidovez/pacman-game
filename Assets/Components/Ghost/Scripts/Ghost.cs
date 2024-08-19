@@ -1,4 +1,5 @@
 using System;
+using GameManagerSpace;
 using UnityEngine;
 
 namespace GhostSpace
@@ -8,6 +9,8 @@ namespace GhostSpace
         public GhostMovement Movement { get; private set; }
         public GhostHome Home { get; private set; }
         public GhostFrightened Frightened { get; private set; }
+        public GhostChase Chase { get; private set; }
+        public GhostScatter Scatter { get; private set; }
         
         public GhostBehavior InitialBehavior;
         public Transform Target;
@@ -18,6 +21,8 @@ namespace GhostSpace
             Movement = GetComponent<GhostMovement>();
             Home = GetComponent<GhostHome>();
             Frightened = GetComponent<GhostFrightened>();
+            Chase = GetComponent<GhostChase>();
+            Scatter = GetComponent<GhostScatter>();
         }
 
         private void Start()
@@ -29,6 +34,10 @@ namespace GhostSpace
         {
             gameObject.SetActive(true);
             Movement.ResetStart();
+            
+            Frightened.Disable();
+            Chase.Disable();
+            Scatter.Disable();
 
             if (Home != InitialBehavior)
             {
@@ -44,6 +53,21 @@ namespace GhostSpace
         public void SetPosition(Vector3 position)
         {
             position.z = transform.position.z;
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("PacMan"))
+            {
+                if (Frightened.enabled)
+                {
+                    GameManager.Instance.GhostEaten(this);
+                }
+                else
+                {
+                    GameManager.Instance.PacmanEaten();
+                }
+            }
         }
     }
 }
