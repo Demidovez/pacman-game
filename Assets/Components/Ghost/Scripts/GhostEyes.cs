@@ -17,7 +17,7 @@ namespace GhostSpace
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _movement = GetComponent<GhostMovement>();
+            _movement = GetComponentInParent<GhostMovement>();
         }
 
         private void Update()

@@ -5,7 +5,7 @@ namespace GhostSpace
     [RequireComponent(typeof(Ghost))]
     public class GhostBehavior : MonoBehaviour
     {
-        public Ghost Ghost { get; private set; }
+        protected Ghost Ghost { get; private set; }
         public float Duration;
 
         private void Awake()

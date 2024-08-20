@@ -7,19 +7,18 @@ namespace PacmanSpace
     public class PacmanMovement : MonoBehaviour
     {
         public float Speed;
-        public float GhostSpeed;
+        public float PacmanSpeed;
         public Vector2 InitDirection;
-        public LayerMask LayerMask;
 
-        public Rigidbody2D RigidBody { get; private set; }
+        private Rigidbody2D RigidBody { get; set; }
         public Vector2 Direction { get; private set; }
-        public Vector2 NextDirection { get; private set; }
-        public Vector3 StartingPosition { get; private set; }
+        private Vector3 StartingPosition { get; set; }
         
         private void Awake()
         {
             RigidBody = GetComponent<Rigidbody2D>();
             StartingPosition = transform.position;
+            InitDirection = Vector2.zero;
         }
 
         private void Start()
@@ -30,16 +29,15 @@ namespace PacmanSpace
         private void FixedUpdate()
         {
             Vector2 position = RigidBody.position;
-            Vector2 translation = Direction * (Speed * GhostSpeed * Time.fixedDeltaTime);
+            Vector2 translation = Direction * (Speed * PacmanSpeed * Time.fixedDeltaTime);
             
             RigidBody.MovePosition(position + translation);
         }
 
         public void ResetStart()
         {
-            GhostSpeed = 1;
+            PacmanSpeed = 1;
             Direction = InitDirection;
-            NextDirection = Vector2.zero;
             transform.position = StartingPosition;
             RigidBody.isKinematic = false;
 
@@ -48,22 +46,7 @@ namespace PacmanSpace
 
         public void SetDirection(Vector2 direction, bool forced = false)
         {
-            if (forced || !Occupied(direction))
-            {
-                Direction = direction;
-                NextDirection = Vector2.zero;
-            }
-            else
-            {
-                NextDirection = direction;
-            }
-        }
-
-        private bool Occupied(Vector2 direction)
-        {
-            RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f);
-
-            return hit.collider != null;
+            Direction = direction;
         }
     }
 }

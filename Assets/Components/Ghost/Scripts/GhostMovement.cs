@@ -62,7 +62,7 @@ namespace GhostSpace
         {
             RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f);
 
-            return hit.collider != null;
+            return hit.collider;
         }
     }
 }

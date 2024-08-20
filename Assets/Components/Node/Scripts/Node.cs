@@ -17,6 +17,8 @@ namespace NodeSpace
             CheckAvailableDirection(Vector2.down);
             CheckAvailableDirection(Vector2.left);
             CheckAvailableDirection(Vector2.right);
+
+            GetComponent<SpriteRenderer>().enabled = false;
         }
 
         private void CheckAvailableDirection(Vector2 direction)

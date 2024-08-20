@@ -15,11 +15,11 @@ namespace GhostSpace
             StopAllCoroutines();
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            if (enabled && collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+            if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
             {
-                Ghost.Movement.SetDirection(-Ghost.Movement.Direction);
+                Ghost.Movement.SetDirection(-Ghost.Movement.Direction, true);
             }
         }
 

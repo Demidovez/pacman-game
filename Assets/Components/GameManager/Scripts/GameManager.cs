@@ -12,7 +12,7 @@ namespace GameManagerSpace
         
         public Ghost[] Ghosts;
         public Pacman Pacman;
-        public GameObject[] Pellets;
+        public Transform PelletsContainer;
         public float DelayTime = 2f;
         
         [SerializeField] private TextMeshProUGUI _scoreText;
@@ -20,9 +20,9 @@ namespace GameManagerSpace
         [SerializeField] private TextMeshProUGUI _gameOverText;
 
         private int _ghostMultiplayer = 1;
-        
-        public int Score { get; private set; }
-        public int Lives { get; private set; }
+
+        private int Score { get; set; }
+        private int Lives { get; set; }
 
         private void Awake()
         {
@@ -117,9 +117,9 @@ namespace GameManagerSpace
 
         private bool HasRemainingPellets()
         {
-            foreach (var pellet in Pellets)
+            for (int i = 0; i < PelletsContainer.childCount; i++)
             {
-                if (pellet.activeSelf)
+                if (PelletsContainer.GetChild(i).gameObject.activeSelf)
                 {
                     return true;
                 }
@@ -154,9 +154,9 @@ namespace GameManagerSpace
         {
             _gameOverText.enabled = false;
             
-            foreach (var pellet in Pellets)
+            for (int i = 0; i < PelletsContainer.childCount; i++)
             {
-                pellet.SetActive(true);
+                PelletsContainer.GetChild(i).gameObject.SetActive(true);
             }
 
             ResetStart();
@@ -165,11 +165,13 @@ namespace GameManagerSpace
         private void SetScore(int score)
         {
             Score = score;
+            _scoreText.SetText(Score.ToString());
         }
         
         private void SetLives(int lives)
         {
             Lives = lives;
+            _livesText.SetText(Lives.ToString());
         }
     }
 }
