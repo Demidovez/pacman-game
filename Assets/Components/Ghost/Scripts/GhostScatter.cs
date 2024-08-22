@@ -16,7 +16,7 @@ namespace GhostSpace
         {
             Node node = other.GetComponent<Node>();
 
-            if (node != null && enabled && !Ghost.Frightened.enabled)
+            if (node && enabled && !Ghost.Frightened.enabled)
             {
                 int index = Random.Range(0, node.AvailableDirections.Count);
 

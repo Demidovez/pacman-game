@@ -113,8 +113,8 @@ GameObject:
   - component: {fileID: 6674585350278074232}
   - component: {fileID: 683126480231727493}
   - component: {fileID: 5565182118607018870}
-  - component: {fileID: 7482178836527629140}
   - component: {fileID: 7456910503526893034}
+  - component: {fileID: 7482178836527629140}
   - component: {fileID: 7190031310678218287}
   - component: {fileID: 8193337097306433959}
   - component: {fileID: 3056480620043349922}
@@ -207,6 +207,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7456910503526893034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678964306309596726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58994d361f27047408e4e6dbaac4ce16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialBehavior: {fileID: 0}
+  Target: {fileID: 0}
+  ScorePoint: 200
 --- !u!114 &7482178836527629140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,21 +240,6 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 512
---- !u!114 &7456910503526893034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5678964306309596726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58994d361f27047408e4e6dbaac4ce16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitialBehavior: {fileID: 0}
-  Target: {fileID: 0}
-  ScorePoint: 200
 --- !u!114 &7190031310678218287
 MonoBehaviour:
   m_ObjectHideFlags: 0

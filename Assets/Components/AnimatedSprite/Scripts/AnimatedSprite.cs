@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AnimatedSpriteSpace
@@ -8,12 +5,12 @@ namespace AnimatedSpriteSpace
     [RequireComponent(typeof(SpriteRenderer))]
     public class AnimatedSprite : MonoBehaviour
     {
-        public SpriteRenderer SpriteRenderer { get; private set; }
-        public int AnimationFrame { get; private set; }
-        
         public Sprite[] Sprites;
         public float AnimationTime;
         public bool Loop = true;
+        
+        private SpriteRenderer SpriteRenderer { get; set; }
+        private int AnimationFrame { get; set; }
 
         private void Awake()
         {
@@ -47,6 +44,8 @@ namespace AnimatedSpriteSpace
 
         public void Restart()
         {
+            SpriteRenderer.enabled = true;
+            
             AnimationFrame = -1;
             Advance();
         }

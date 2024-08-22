@@ -12,8 +12,8 @@ namespace GhostSpace
 
         public Rigidbody2D RigidBody { get; private set; }
         public Vector2 Direction { get; private set; }
-        public Vector2 NextDirection { get; private set; }
-        public Vector3 StartingPosition { get; private set; }
+        private Vector2 NextDirection { get; set; }
+        private Vector3 StartingPosition { get; set; }
         
         private void Awake()
         {
@@ -28,10 +28,15 @@ namespace GhostSpace
 
         private void FixedUpdate()
         {
-            Vector2 position = RigidBody.position;
+            if (NextDirection != Vector2.zero && !Occupied(NextDirection))
+            {
+                Direction = NextDirection;
+                NextDirection = Vector2.zero;
+            }
+            
             Vector2 translation = Direction * (Speed * GhostSpeed * Time.fixedDeltaTime);
             
-            RigidBody.MovePosition(position + translation);
+            RigidBody.MovePosition(RigidBody.position + translation);
         }
 
         public void ResetStart()
@@ -60,8 +65,8 @@ namespace GhostSpace
 
         private bool Occupied(Vector2 direction)
         {
-            RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f);
-
+            RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, LayerMask);
+        
             return hit.collider;
         }
     }

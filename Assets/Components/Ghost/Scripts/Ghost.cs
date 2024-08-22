@@ -16,6 +16,8 @@ namespace GhostSpace
         public Transform Target;
         public int ScorePoint = 200;
 
+        private bool _isEnabled = true;
+
         private void Awake()
         {
             Movement = GetComponent<GhostMovement>();
@@ -30,9 +32,21 @@ namespace GhostSpace
             ResetStart();
         }
 
+        private void OnEnable()
+        {
+            if (!_isEnabled)
+            {
+                ResetStart();
+            }
+        }
+
+        private void OnDisable()
+        {
+            _isEnabled = false;
+        }
+
         private void ResetStart()
         {
-            gameObject.SetActive(true);
             Movement.ResetStart();
             
             Frightened.Disable();
@@ -53,6 +67,7 @@ namespace GhostSpace
         public void SetPosition(Vector3 position)
         {
             position.z = transform.position.z;
+            transform.position = position;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -66,6 +81,7 @@ namespace GhostSpace
                 else
                 {
                     GameManager.Instance.PacmanEaten();
+                    ResetStart();
                 }
             }
         }

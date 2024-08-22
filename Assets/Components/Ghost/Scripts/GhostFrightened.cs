@@ -1,4 +1,3 @@
-using System;
 using AnimatedSpriteSpace;
 using NodeSpace;
 using UnityEngine;
@@ -39,8 +38,8 @@ namespace GhostSpace
         private void Eaten()
         {
             _eaten = true;
-            
-            Ghost.SetPosition(Ghost.Home.Inside.position);
+
+            Ghost.Movement.ResetStart();
             Ghost.Home.Enable(Duration);
             
             Body.enabled = false;
@@ -78,7 +77,7 @@ namespace GhostSpace
         {
             Node node = other.GetComponent<Node>();
 
-            if (node != null && enabled)
+            if (node && enabled)
             {
                 Vector2 direction = Vector2.zero;
 
@@ -102,12 +101,9 @@ namespace GhostSpace
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("PacMan"))
+            if (enabled && other.gameObject.layer == LayerMask.NameToLayer("PacMan"))
             {
-                if (enabled)
-                {
-                    Eaten();
-                }
+                Eaten();
             }
         }
     }

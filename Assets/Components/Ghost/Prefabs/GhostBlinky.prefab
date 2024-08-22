@@ -113,8 +113,8 @@ GameObject:
   - component: {fileID: 6674585350278074232}
   - component: {fileID: 683126480231727493}
   - component: {fileID: 5565182118607018870}
-  - component: {fileID: 7482178836527629140}
   - component: {fileID: 7456910503526893034}
+  - component: {fileID: 7482178836527629140}
   - component: {fileID: 7190031310678218287}
   - component: {fileID: 8193337097306433959}
   - component: {fileID: 3056480620043349922}
@@ -207,24 +207,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7482178836527629140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5678964306309596726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f35289a00785b43a36865e3d7e3c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 7
-  GhostSpeed: 1
-  InitDirection: {x: 0, y: 0}
-  LayerMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!114 &7456910503526893034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +222,7 @@ MonoBehaviour:
   InitialBehavior: {fileID: 7190031310678218287}
   Target: {fileID: 0}
   ScorePoint: 200
---- !u!114 &7190031310678218287
+--- !u!114 &7482178836527629140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,10 +231,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5678964306309596726}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f35289a00785b43a36865e3d7e3c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  GhostSpeed: 1
+  InitDirection: {x: 0, y: 0}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!114 &7190031310678218287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678964306309596726}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64e92280aef1e3341b3bdddfbbc52119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 0
+  Duration: 2
   Inside: {fileID: 0}
   Outside: {fileID: 0}
 --- !u!114 &8193337097306433959
@@ -262,12 +262,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678964306309596726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 753ec66eb80813c4aa1cb4f880e10b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 7
+  Duration: 3
 --- !u!114 &3056480620043349922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678964306309596726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a75ba1ba1e9ead64197dab985a478c88, type: 3}
   m_Name: 
@@ -501,7 +501,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d5e15c75b88558b469ecc97990cce215, type: 3}
   - {fileID: 21300000, guid: a66fca21a2eaf43459e2fbb561e630d6, type: 3}
   - {fileID: 21300000, guid: 0046507bc33d04343a6bcbf90288aff2, type: 3}
-  AnimationTime: 0
+  AnimationTime: 0.25
   Loop: 1
 --- !u!1 &7156383154403596007
 GameObject:

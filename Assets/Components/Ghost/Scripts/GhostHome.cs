@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,6 +12,7 @@ namespace GhostSpace
         private void OnEnable()
         {
             StopAllCoroutines();
+            Ghost.Movement.SetDirection(Vector2.up, true);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -29,21 +29,22 @@ namespace GhostSpace
             {
                 StartCoroutine(ExitTransition());
             }
+            
+            Ghost.Scatter.Enable();
         }
 
         private IEnumerator ExitTransition()
         {
-            Ghost.Movement.SetDirection(Vector2.up, true);
-            Ghost.Movement.RigidBody.isKinematic = true;
             Ghost.Movement.enabled = false;
-
+            Ghost.Movement.RigidBody.isKinematic = true;
+            
             Vector3 position = transform.position;
-            float duration = 0.5f;
+            float duration = 1f;
             float elapsed = 0f;
 
             while (elapsed < duration)
             {
-                Ghost.SetPosition(Vector3.Lerp(position, Outside.position, elapsed / duration));
+                Ghost.SetPosition(Vector3.Lerp(position, Inside.position, elapsed / duration));
                 elapsed += Time.deltaTime;
 
                 yield return null;
@@ -59,9 +60,8 @@ namespace GhostSpace
                 yield return null;
             }
             
-            Ghost.Movement.SetDirection(new Vector2(Random.value < 0.5f ? -1f: 1f, 0f ), true);
-            Ghost.Movement.RigidBody.isKinematic = false;
             Ghost.Movement.enabled = true;
+            Ghost.Movement.SetDirection(new Vector2(Random.value < 0.5f ? -1f: 1f, 0f ), true);
         }
     }
 }

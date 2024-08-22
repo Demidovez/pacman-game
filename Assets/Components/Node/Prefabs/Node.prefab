@@ -145,4 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512

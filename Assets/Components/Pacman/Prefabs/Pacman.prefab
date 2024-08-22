@@ -310,4 +310,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c66651b84f0bd454e909b29b38595d84, type: 3}
   - {fileID: 0}
   AnimationTime: 0.125
-  Loop: 1
+  Loop: 0

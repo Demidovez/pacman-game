@@ -19,7 +19,7 @@ namespace GameManagerSpace
         [SerializeField] private TextMeshProUGUI _livesText;
         [SerializeField] private TextMeshProUGUI _gameOverText;
 
-        private int _ghostMultiplayer = 1;
+        // private int _ghostMultiplayer = 1;
 
         private int Score { get; set; }
         private int Lives { get; set; }
@@ -63,6 +63,7 @@ namespace GameManagerSpace
             SetLives(3);
             
             NewRound();
+            _gameOverText.gameObject.SetActive(false);
         }
         
         public void PacmanEaten()
@@ -106,14 +107,14 @@ namespace GameManagerSpace
             }
             
             PelletEaten(pellet);
-            CancelInvoke(nameof(ResetGhost));
-            Invoke(nameof(ResetGhost), pellet.Duration);
+            // CancelInvoke(nameof(ResetGhost));
+            // Invoke(nameof(ResetGhost), pellet.Duration);
         }
 
-        private void ResetGhost()
-        {
-            _ghostMultiplayer = 1;
-        }
+        // private void ResetGhost()
+        // {
+        //     _ghostMultiplayer = 1;
+        // }
 
         private bool HasRemainingPellets()
         {
@@ -130,7 +131,7 @@ namespace GameManagerSpace
 
         private void GameOver()
         {
-            _gameOverText.enabled = true;
+            _gameOverText.gameObject.SetActive(true);
             
             foreach (var ghost in Ghosts)
             {
@@ -146,14 +147,12 @@ namespace GameManagerSpace
             {
                 ghost.gameObject.SetActive(true);
             }
-
-            Pacman.gameObject.SetActive(true);
+            
+            Pacman.ResetStart();
         }
 
         private void NewRound()
         {
-            _gameOverText.enabled = false;
-            
             for (int i = 0; i < PelletsContainer.childCount; i++)
             {
                 PelletsContainer.GetChild(i).gameObject.SetActive(true);
@@ -171,7 +170,7 @@ namespace GameManagerSpace
         private void SetLives(int lives)
         {
             Lives = lives;
-            _livesText.SetText(Lives.ToString());
+            _livesText.SetText($"x{Lives.ToString()}");
         }
     }
 }

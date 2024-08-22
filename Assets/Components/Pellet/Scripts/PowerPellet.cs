@@ -10,7 +10,6 @@ namespace PelletSpace
         {
             GameManager.Instance.PowerPelletEaten(this);
         }
-
     }
 }
 
