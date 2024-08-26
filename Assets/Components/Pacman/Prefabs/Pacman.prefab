@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8468991011095228218}
   - component: {fileID: 8836256167406919268}
   - component: {fileID: 4060613002413370700}
-  - component: {fileID: 355982161598421735}
+  - component: {fileID: 3765611995250858736}
   m_Layer: 6
   m_Name: Pacman
   m_TagString: Untagged
@@ -184,7 +184,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1f9604f5749fde646a59a72c9ee1cd3a, type: 3}
   AnimationTime: 0.125
   Loop: 1
---- !u!114 &355982161598421735
+--- !u!114 &3765611995250858736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,12 +193,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 912310751112773029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e526a626a5f1cc449b1a98a1284cbe13, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d5c7d7142329c74793f678e77b049b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 8
-  PacmanSpeed: 1
-  InitDirection: {x: 1, y: 0}
+  SpeedMultiplier: 1
+  InitDirection: {x: 0, y: 0}
+  ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &4166085606127744690
 GameObject:
   m_ObjectHideFlags: 0

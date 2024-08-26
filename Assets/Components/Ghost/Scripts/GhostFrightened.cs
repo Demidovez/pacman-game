@@ -62,14 +62,14 @@ namespace GhostSpace
         private void OnEnable()
         {
             Blue.GetComponent<AnimatedSprite>().Restart();
-            Ghost.Movement.GhostSpeed = 0.5f;
+            Ghost.Movement.SpeedMultiplier = 0.5f;
 
             _eaten = false;
         }
 
         private void OnDisable()
         {
-            Ghost.Movement.GhostSpeed = 1f;
+            Ghost.Movement.SpeedMultiplier = 1f;
             _eaten = false;
         }
 

@@ -1,4 +1,5 @@
 using System;
+using MovementSpace;
 using UnityEngine;
 
 namespace GhostSpace
@@ -12,12 +13,12 @@ namespace GhostSpace
         public Sprite Right;
 
         private SpriteRenderer _spriteRenderer;
-        private GhostMovement _movement;
+        private Movement _movement;
 
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _movement = GetComponentInParent<GhostMovement>();
+            _movement = GetComponentInParent<Movement>();
         }
 
         private void Update()

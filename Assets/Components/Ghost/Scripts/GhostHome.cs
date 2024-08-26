@@ -12,14 +12,13 @@ namespace GhostSpace
         private void OnEnable()
         {
             StopAllCoroutines();
-            Ghost.Movement.SetDirection(Vector2.up, true);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+            if (enabled && other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
             {
-                Ghost.Movement.SetDirection(-Ghost.Movement.Direction, true);
+                Ghost.Movement.SetDirection(-Ghost.Movement.Direction);
             }
         }
 
@@ -29,16 +28,16 @@ namespace GhostSpace
             {
                 StartCoroutine(ExitTransition());
             }
-            
-            Ghost.Scatter.Enable();
         }
 
         private IEnumerator ExitTransition()
         {
-            Ghost.Movement.enabled = false;
+            Ghost.Movement.SetDirection(Vector2.up, true);
             Ghost.Movement.RigidBody.isKinematic = true;
+            Ghost.Movement.enabled = false;
             
             Vector3 position = transform.position;
+            
             float duration = 1f;
             float elapsed = 0f;
 
@@ -60,8 +59,9 @@ namespace GhostSpace
                 yield return null;
             }
             
-            Ghost.Movement.enabled = true;
             Ghost.Movement.SetDirection(new Vector2(Random.value < 0.5f ? -1f: 1f, 0f ), true);
+            Ghost.Movement.RigidBody.isKinematic = false;
+            Ghost.Movement.enabled = true;
         }
     }
 }

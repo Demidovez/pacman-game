@@ -21,6 +21,7 @@ namespace GhostSpace
         public virtual void Enable(float duration)
         {
             enabled = true;
+            
             CancelInvoke();
             Invoke(nameof(Disable), duration);
         }
@@ -28,6 +29,7 @@ namespace GhostSpace
         public virtual void Disable()
         {
             enabled = false;
+            
             CancelInvoke();
         }
     }

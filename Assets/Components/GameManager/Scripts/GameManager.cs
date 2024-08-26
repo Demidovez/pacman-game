@@ -19,7 +19,7 @@ namespace GameManagerSpace
         [SerializeField] private TextMeshProUGUI _livesText;
         [SerializeField] private TextMeshProUGUI _gameOverText;
 
-        // private int _ghostMultiplayer = 1;
+        private int _ghostMultiplayer = 1;
 
         private int Score { get; set; }
         private int Lives { get; set; }
@@ -83,7 +83,10 @@ namespace GameManagerSpace
 
         public void GhostEaten(Ghost ghost)
         {
-            SetScore(Score + ghost.ScorePoint);
+            int points = ghost.ScorePoint * _ghostMultiplayer;
+            SetScore(Score + points);
+
+            _ghostMultiplayer++;
         }
 
         public void PelletEaten(Pellet pellet)
@@ -107,14 +110,14 @@ namespace GameManagerSpace
             }
             
             PelletEaten(pellet);
-            // CancelInvoke(nameof(ResetGhost));
-            // Invoke(nameof(ResetGhost), pellet.Duration);
+            CancelInvoke(nameof(ResetGhost));
+            Invoke(nameof(ResetGhost), pellet.Duration);
         }
 
-        // private void ResetGhost()
-        // {
-        //     _ghostMultiplayer = 1;
-        // }
+        private void ResetGhost()
+        {
+            _ghostMultiplayer = 1;
+        }
 
         private bool HasRemainingPellets()
         {

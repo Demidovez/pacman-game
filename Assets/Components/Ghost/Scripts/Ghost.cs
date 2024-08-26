@@ -1,12 +1,13 @@
 using System;
 using GameManagerSpace;
+using MovementSpace;
 using UnityEngine;
 
 namespace GhostSpace
 {
     public class Ghost : MonoBehaviour
     {
-        public GhostMovement Movement { get; private set; }
+        public Movement Movement { get; private set; }
         public GhostHome Home { get; private set; }
         public GhostFrightened Frightened { get; private set; }
         public GhostChase Chase { get; private set; }
@@ -20,7 +21,7 @@ namespace GhostSpace
 
         private void Awake()
         {
-            Movement = GetComponent<GhostMovement>();
+            Movement = GetComponent<Movement>();
             Home = GetComponent<GhostHome>();
             Frightened = GetComponent<GhostFrightened>();
             Chase = GetComponent<GhostChase>();
@@ -51,7 +52,7 @@ namespace GhostSpace
             
             Frightened.Disable();
             Chase.Disable();
-            Scatter.Disable();
+            Scatter.Enable();
 
             if (Home != InitialBehavior)
             {

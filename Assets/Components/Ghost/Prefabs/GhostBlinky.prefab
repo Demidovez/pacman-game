@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 683126480231727493}
   - component: {fileID: 5565182118607018870}
   - component: {fileID: 7456910503526893034}
-  - component: {fileID: 7482178836527629140}
+  - component: {fileID: 5744671989493031517}
   - component: {fileID: 7190031310678218287}
   - component: {fileID: 8193337097306433959}
   - component: {fileID: 3056480620043349922}
@@ -219,10 +219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58994d361f27047408e4e6dbaac4ce16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialBehavior: {fileID: 7190031310678218287}
+  InitialBehavior: {fileID: 8193337097306433959}
   Target: {fileID: 0}
   ScorePoint: 200
---- !u!114 &7482178836527629140
+--- !u!114 &5744671989493031517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,13 +231,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5678964306309596726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f35289a00785b43a36865e3d7e3c9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d5c7d7142329c74793f678e77b049b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
-  GhostSpeed: 1
-  InitDirection: {x: 0, y: 0}
-  LayerMask:
+  Speed: 7
+  InitDirection: {x: -1, y: 0}
+  ObstacleLayer:
     serializedVersion: 2
     m_Bits: 512
 --- !u!114 &7190031310678218287
@@ -252,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e92280aef1e3341b3bdddfbbc52119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 2
+  Duration: 0
   Inside: {fileID: 0}
   Outside: {fileID: 0}
 --- !u!114 &8193337097306433959
@@ -267,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753ec66eb80813c4aa1cb4f880e10b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 3
+  Duration: 7
 --- !u!114 &3056480620043349922
 MonoBehaviour:
   m_ObjectHideFlags: 0
