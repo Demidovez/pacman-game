@@ -173,7 +173,7 @@ namespace GameManagerSpace
         private void SetLives(int lives)
         {
             Lives = lives;
-            _livesText.SetText($"x{Lives.ToString()}");
+            _livesText.SetText($"x{Mathf.Max(0, Lives).ToString()}");
         }
     }
 }
