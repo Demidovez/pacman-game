@@ -8,8 +8,6 @@ namespace GameManagerSpace
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance { get; private set; }
-        
         public Ghost[] Ghosts;
         public Pacman Pacman;
         public Transform PelletsContainer;
@@ -24,18 +22,6 @@ namespace GameManagerSpace
         private int Score { get; set; }
         private int Lives { get; set; }
 
-        private void Awake()
-        {
-            if (Instance != null)
-            {
-                DestroyImmediate(gameObject);
-            }
-            else
-            {
-                Instance = this;
-            }
-        }
-
         private void Start()
         {
             NewGame();
@@ -46,14 +32,6 @@ namespace GameManagerSpace
             if (Lives <= 0 && Input.anyKeyDown)
             {
                 NewGame();
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (Instance == this)
-            {
-                Instance = null;
             }
         }
 

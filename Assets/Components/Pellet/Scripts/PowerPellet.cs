@@ -1,4 +1,5 @@
 using GameManagerSpace;
+using Zenject;
 
 namespace PelletSpace
 {
@@ -8,7 +9,7 @@ namespace PelletSpace
 
         protected override void Eat()
         {
-            GameManager.Instance.PowerPelletEaten(this);
+            GameManager.PowerPelletEaten(this);
         }
     }
 }

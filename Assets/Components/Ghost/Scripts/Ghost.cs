@@ -1,6 +1,7 @@
 using GameManagerSpace;
 using MovementSpace;
 using UnityEngine;
+using Zenject;
 
 namespace GhostSpace
 {
@@ -17,6 +18,14 @@ namespace GhostSpace
         public int ScorePoint = 200;
 
         private bool _isEnabled = true;
+
+        private GameManager _gameManager;
+
+        [Inject]
+        public void Construct(GameManager gameManager)
+        {
+            _gameManager = gameManager;
+        }
 
         private void Awake()
         {
@@ -76,11 +85,11 @@ namespace GhostSpace
             {
                 if (Frightened.enabled)
                 {
-                    GameManager.Instance.GhostEaten(this);
+                    _gameManager.GhostEaten(this);
                 }
                 else
                 {
-                    GameManager.Instance.PacmanEaten();
+                    _gameManager.PacmanEaten();
                     ResetStart();
                 }
             }
