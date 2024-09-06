@@ -22,18 +22,21 @@ namespace GhostSpace
         private GameManager _gameManager;
 
         [Inject]
-        public void Construct(GameManager gameManager)
+        public void Construct(
+            GameManager gameManager,
+            Movement movement,
+            GhostHome home,
+            GhostFrightened frightened,
+            GhostScatter scatter,
+            GhostChase chase
+        )
         {
             _gameManager = gameManager;
-        }
-
-        private void Awake()
-        {
-            Movement = GetComponent<Movement>();
-            Home = GetComponent<GhostHome>();
-            Frightened = GetComponent<GhostFrightened>();
-            Chase = GetComponent<GhostChase>();
-            Scatter = GetComponent<GhostScatter>();
+            Movement = movement;
+            Home = home;
+            Frightened = frightened;
+            Chase = chase;
+            Scatter = scatter;
         }
 
         private void Start()

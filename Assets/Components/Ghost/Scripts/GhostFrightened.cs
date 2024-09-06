@@ -40,7 +40,7 @@ namespace GhostSpace
             _eaten = true;
 
             Ghost.Movement.ResetStart();
-            Ghost.Home.Enable(Duration);
+            Ghost.InitialBehavior.Enable(Duration);
             
             Body.enabled = false;
             Eyes.enabled = true;

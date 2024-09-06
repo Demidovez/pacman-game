@@ -3,13 +3,14 @@ using PacmanSpace;
 using PelletSpace;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace GameManagerSpace
 {
     public class GameManager : MonoBehaviour
     {
-        public Ghost[] Ghosts;
-        public Pacman Pacman;
+        private Ghost[] _ghosts;
+        private Pacman _pacman;
         public Transform PelletsContainer;
         public float DelayTime = 2f;
         
@@ -21,6 +22,13 @@ namespace GameManagerSpace
 
         private int Score { get; set; }
         private int Lives { get; set; }
+
+        [Inject]
+        public void Construct(Pacman pacman, Ghost[] ghosts)
+        {
+            _pacman = pacman;
+            _ghosts = ghosts;
+        }
 
         private void Start()
         {
@@ -46,7 +54,7 @@ namespace GameManagerSpace
         
         public void PacmanEaten()
         {
-            Pacman.DeathSequence();
+            _pacman.DeathSequence();
             SetLives(Lives - 1);
 
             if (Lives > 0)
@@ -75,14 +83,14 @@ namespace GameManagerSpace
 
             if (!HasRemainingPellets())
             {
-                Pacman.gameObject.SetActive(false);
+                _pacman.gameObject.SetActive(false);
                 Invoke(nameof(NewRound), 3f);
             }
         }
         
         public void PowerPelletEaten(PowerPellet pellet)
         {
-            foreach (var ghost in Ghosts)
+            foreach (var ghost in _ghosts)
             {
                 ghost.Frightened.Enable(pellet.Duration);
             }
@@ -114,22 +122,22 @@ namespace GameManagerSpace
         {
             _gameOverText.gameObject.SetActive(true);
             
-            foreach (var ghost in Ghosts)
+            foreach (var ghost in _ghosts)
             {
                 ghost.gameObject.SetActive(false);
             }
 
-            Pacman.gameObject.SetActive(false);
+            _pacman.gameObject.SetActive(false);
         }
 
         private void ResetStart()
         {
-            foreach (var ghost in Ghosts)
+            foreach (var ghost in _ghosts)
             {
                 ghost.gameObject.SetActive(true);
             }
             
-            Pacman.ResetStart();
+            _pacman.ResetStart();
         }
 
         private void NewRound()

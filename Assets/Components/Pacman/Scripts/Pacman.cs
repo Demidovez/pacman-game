@@ -1,7 +1,7 @@
-using System;
 using AnimatedSpriteSpace;
 using MovementSpace;
 using UnityEngine;
+using Zenject;
 
 namespace PacmanSpace
 {
@@ -13,11 +13,16 @@ namespace PacmanSpace
         private CircleCollider2D _circleCollider;
         private Movement _movement;
 
+        [Inject]
+        public void Construct(Movement movement)
+        {
+            _movement = movement;
+        }
+
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _circleCollider = GetComponent<CircleCollider2D>();
-            _movement = GetComponent<Movement>();
         }
 
         private void Update()

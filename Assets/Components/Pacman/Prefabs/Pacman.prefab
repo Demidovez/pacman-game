@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 8836256167406919268}
   - component: {fileID: 4060613002413370700}
   - component: {fileID: 3765611995250858736}
+  - component: {fileID: 2852596807684943404}
+  - component: {fileID: 4979456897030157021}
   m_Layer: 6
   m_Name: Pacman
   m_TagString: Untagged
@@ -202,6 +204,36 @@ MonoBehaviour:
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &2852596807684943404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912310751112773029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 4979456897030157021}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
+--- !u!114 &4979456897030157021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912310751112773029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe684aa388079a74188cecdea38be9d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4166085606127744690
 GameObject:
   m_ObjectHideFlags: 0

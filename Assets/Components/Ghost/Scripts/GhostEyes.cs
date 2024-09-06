@@ -1,6 +1,7 @@
 using System;
 using MovementSpace;
 using UnityEngine;
+using Zenject;
 
 namespace GhostSpace
 {
@@ -15,10 +16,15 @@ namespace GhostSpace
         private SpriteRenderer _spriteRenderer;
         private Movement _movement;
 
+        [Inject]
+        public void Construct(Movement movement)
+        {
+            _movement = movement;
+        }
+
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _movement = GetComponentInParent<Movement>();
         }
 
         private void Update()

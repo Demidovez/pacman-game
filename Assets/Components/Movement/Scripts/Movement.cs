@@ -5,7 +5,7 @@ namespace MovementSpace
     public class Movement : MonoBehaviour
     {
         public float Speed;
-        internal float SpeedMultiplier = 1f;
+        public float SpeedMultiplier = 1f;
         public Vector2 InitDirection;
         public LayerMask ObstacleLayer;
 

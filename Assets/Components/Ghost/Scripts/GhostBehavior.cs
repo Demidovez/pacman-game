@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace GhostSpace
 {
@@ -8,9 +9,10 @@ namespace GhostSpace
         protected Ghost Ghost { get; private set; }
         public float Duration;
 
-        private void Awake()
+        [Inject]
+        public void Construct(Ghost ghost)
         {
-            Ghost = GetComponent<Ghost>();
+            Ghost = ghost;
         }
 
         public void Enable()
