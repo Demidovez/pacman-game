@@ -1,5 +1,6 @@
 using GameManagerSpace;
 using MovementSpace;
+using PacmanSpace;
 using UnityEngine;
 using Zenject;
 
@@ -12,15 +13,14 @@ namespace GhostSpace
         public GhostFrightened Frightened { get; private set; }
         public GhostChase Chase { get; private set; }
         public GhostScatter Scatter { get; private set; }
-        
+        public Transform Target { get; private set; }
         public GhostBehavior InitialBehavior;
-        public Transform Target;
         public int ScorePoint = 200;
 
         private bool _isEnabled = true;
 
         private GameManager _gameManager;
-
+        
         [Inject]
         public void Construct(
             GameManager gameManager,
@@ -28,7 +28,8 @@ namespace GhostSpace
             GhostHome home,
             GhostFrightened frightened,
             GhostScatter scatter,
-            GhostChase chase
+            GhostChase chase,
+            Pacman pacman
         )
         {
             _gameManager = gameManager;
@@ -37,6 +38,7 @@ namespace GhostSpace
             Frightened = frightened;
             Chase = chase;
             Scatter = scatter;
+            Target = pacman.transform;
         }
 
         private void Start()
